@@ -2,7 +2,7 @@
 
 const WMO = {
     0: 'Senin',
-    1: 'Predominant senin',
+    1: 'În general senin',
     2: 'Parțial noros',
     3: 'Noros',
     45: 'Ceață',
