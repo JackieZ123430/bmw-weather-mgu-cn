@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "apps": {
+    "path": "apps/*",
+    "manifest": "app.json",
+    "exclude": [],
+    "mguHmi": ["ID7"],
+    "build": {
+      "python": "tools/build_unit.py",
+      "args": ["{id}", "{version}", "{dir}"],
+      "sdk": "oap-sdk",
+      "output": "dist/{id}@{version}.tgz",
+      "network": ["flash8523_bmw_weather"]
+    }
+  }
+}
