@@ -1,0 +1,106 @@
+{
+  "id": "flash8523_bmw_weather",
+  "title": "BMW Weather",
+  "description": "Prognoză meteo elegantă pentru BMW iDrive 7, cu widget pe ecranul principal",
+  "version": "0.1.0",
+  "vendor": "flash8523",
+  "loggingId": "BWTH",
+  "iconGlyph": "cloud",
+  "screens": [
+    {
+      "name": "MAIN",
+      "kind": "canvas",
+      "title": "BMW Weather",
+      "buttons": [
+        ["BTN_ACTION", "Actualizează"],
+        ["BTN_PAGE", "Prognoză"],
+        ["BTN_SETTINGS", "Setări"]
+      ]
+    }
+  ],
+  "startWidget": {
+    "name": "BMW Weather",
+    "layout": "LT_Table_OnlineApps_DriveRecorderWidget",
+    "image": "BackgroundImage1",
+    "scale": 2,
+    "size": [384, 256],
+    "safe": [0.09, 0.1],
+    "cells": {
+      "ErrorInfo": [false, "Bool"],
+      "background": [true, "Bool"],
+      "ProgressbarVisible": [false, "Bool"],
+      "TextRecordings": ["", "Text"]
+    }
+  },
+  "settings": [
+    {
+      "key": "locationMode",
+      "label": "Sursa locației",
+      "type": "choice",
+      "default": "manual",
+      "options": [
+        ["manual", "Coordonate manuale"],
+        ["gps", "GPS (după validarea interfeței MGU)"]
+      ]
+    },
+    {
+      "key": "latitude",
+      "label": "Latitudine",
+      "type": "number",
+      "default": 0,
+      "steps": [0.01, 0.1, 0.5],
+      "when": {"locationMode": "manual"}
+    },
+    {
+      "key": "longitude",
+      "label": "Longitudine",
+      "type": "number",
+      "default": 0,
+      "steps": [0.01, 0.1, 0.5],
+      "when": {"locationMode": "manual"}
+    },
+    {
+      "key": "refreshMinutes",
+      "label": "Actualizare automată",
+      "type": "choice",
+      "default": "30",
+      "options": [
+        ["15", "La 15 minute"],
+        ["30", "La 30 minute"],
+        ["60", "La 60 minute"]
+      ]
+    },
+    {
+      "key": "theme",
+      "label": "Temă",
+      "type": "choice",
+      "default": "m_red",
+      "options": [
+        ["m_red", "M Red"],
+        ["m_tricolour", "M Tricolour"],
+        ["ice", "Ice White"],
+        ["amber", "Night Amber"]
+      ]
+    },
+    {
+      "key": "layout",
+      "label": "Aspect ecran",
+      "type": "choice",
+      "default": "full",
+      "options": [
+        ["full", "Full screen"],
+        ["standard", "Standard"]
+      ]
+    },
+    {
+      "key": "renderer",
+      "label": "Renderer",
+      "type": "choice",
+      "default": "auto",
+      "options": [
+        ["auto", "GPU 60 fps (default)"],
+        ["software", "Software"]
+      ]
+    }
+  ]
+}
