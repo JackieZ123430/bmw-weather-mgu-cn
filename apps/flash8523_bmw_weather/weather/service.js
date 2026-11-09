@@ -8,12 +8,25 @@ const normalize = require('./normalize');
 function create(dataDir, log) {
     const cacheFile = path.join(dataDir, 'weather-cache.json');
     let cached = null;
-    try { cached = JSON.parse(fs.readFileSync(cacheFile, 'utf8')); } catch (e) {}
+    let cachedLocation = null;
+    try {
+        const saved = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
+        if (saved && saved.data && saved.location) {
+            cached = saved.data;
+            cachedLocation = saved.location;
+        }
+    } catch (e) {}
 
-    function save(data) {
+    function sameLocation(a, b) {
+        return a && b &&
+            Math.abs(Number(a.latitude) - Number(b.latitude)) < 0.0001 &&
+            Math.abs(Number(a.longitude) - Number(b.longitude)) < 0.0001;
+    }
+
+    function save(data, location) {
         const temp = cacheFile + '.tmp';
         try {
-            fs.writeFileSync(temp, JSON.stringify(data));
+            fs.writeFileSync(temp, JSON.stringify({ data: data, location: location }));
             fs.renameSync(temp, cacheFile);
         } catch (e) {
             try { fs.unlinkSync(temp); } catch (ignore) {}
@@ -27,10 +40,13 @@ function create(dataDir, log) {
             if (!location) return Promise.reject(new Error('Configurează coordonatele locației în Setări'));
             return api.fetchForecast(location.latitude, location.longitude).then(function (raw) {
                 cached = normalize.normalize(raw);
-                save(cached);
+                cachedLocation = { latitude: location.latitude, longitude: location.longitude };
+                save(cached, cachedLocation);
                 return { data: cached, stale: false };
             }).catch(function (error) {
-                if (cached) return { data: cached, stale: true, error: error };
+                if (cached && sameLocation(cachedLocation, location)) {
+                    return { data: cached, stale: true, error: error };
+                }
                 throw error;
             });
         }
