@@ -1,7 +1,7 @@
 {
   "id": "flash8523_bmw_weather",
-  "title": "BMW Weather",
-  "description": "Prognoză meteo elegantă pentru BMW iDrive 7, cu widget pe ecranul principal",
+  "title": "BMW 天气",
+  "description": "宝马 ID7 天气预报和主页小组件",
   "version": "0.1.0",
   "vendor": "flash8523",
   "loggingId": "BWTH",
