@@ -1,0 +1,24 @@
+{
+  "schema": 2,
+  "components": [
+    {
+      "id": "flash8523_bmw_weather",
+      "kind": "app",
+      "title": "BMW 天气",
+      "description": "宝马 ID7 天气预报和主页小组件",
+      "version": "0.1.0",
+      "artifact": {
+        "name": "flash8523_bmw_weather@0.1.0.tgz",
+        "url": "https://raw.githubusercontent.com/JackieZ123430/MGU-CN-XIAOBAI/refs/heads/main/packages/weather-pr/flash8523_bmw_weather@0.1.0.tgz",
+        "size": 639627,
+        "sha256": "6b194866dbd9740fa36137d1569901bcb7c49618ac96a518e3ca7b3ec4fbeaad"
+      },
+      "requires": {},
+      "uninstallable": true,
+      "mguHmi": [
+        "ID7"
+      ],
+      "author": "汉化 小白151"
+    }
+  ]
+}
